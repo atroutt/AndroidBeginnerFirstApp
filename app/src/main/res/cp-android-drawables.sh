@@ -19,16 +19,16 @@ fi
 
 color="black"
 if [ -n "$3" ]; then
-   color=$3
    case $3 in
        white)
-           ;;
+           color="white" ;;
        black)
-           ;;
+           color="black" ;;
        *)
            echo "ERROR: $3 is not a valid color. Choose white or black."
            exit 1
    esac
+   color=$3
 fi
 
 size="24dp"
@@ -57,45 +57,45 @@ fi
 
 for f in $basefolder/$1/drawable-mdpi; do
     d=$(basename "$f")
-    if [ -f "$f/$2_$color_$size.png" ]; then
-        echo "copying $f/$2_$color_$size.png"
+    if [ -f "$f/$2_${color}_$size.png" ]; then
+        echo "copying $f/$2_${color}_$size.png"
         mkdir -vp $d
-        cp -v "$f/$2_$color_$size.png" "$d/$2.png"
+        cp -v "$f/$2_${color}_$size.png" "$d/$2.png"
     fi
 done
 
 for f in $basefolder/$1/drawable-hdpi; do
     d=$(basename "$f")
-    if [ -f "$f/$2_$color_$size.png" ]; then
-        echo "copying $f/$2_$color_$size.png"
+    if [ -f "$f/$2_${color}_$size.png" ]; then
+        echo "copying $f/$2_${color}_$size.png"
         mkdir -vp $d
-        cp -v "$f/$2_$color_$size.png" "$d/$2.png"
+        cp -v "$f/$2_${color}_$size.png" "$d/$2.png"
     fi
 done
 
 for f in $basefolder/$1/drawable-xxhdpi; do
     d=$(basename "$f")
-    if [ -f "$f/$2_$color_$size.png" ]; then
-        echo "copying $f/$2_$color_$size.png"
+    if [ -f "$f/$2_${color}_$size.png" ]; then
+        echo "copying $f/$2_${color}_$size.png"
         mkdir -vp $d
-        cp -v "$f/$2_$color_$size.png" "$d/$2.png"
+        cp -v "$f/$2_${color}_$size.png" "$d/$2.png"
     fi
 done
 
 for f in $basefolder/$1/drawable-xxhdpi; do
     d=$(basename "$f")
-    if [ -f "$f/$2_$color_$size.png" ]; then
-        echo "copying $f/$2_$color_$size.png"
+    if [ -f "$f/$2_${color}_$size.png" ]; then
+        echo "copying $f/$2_${color}_$size.png"
         mkdir -vp $d
-        cp -v "$f/$2_$color_$size.png" "$d/$2.png"
+        cp -v "$f/$2_${color}_$size.png" "$d/$2.png"
     fi
 done
 
 for f in $basefolder/$1/drawable-xxxhdpi; do
     d=$(basename "$f")
-    if [ -f "$f/$2_$color_$size.png" ]; then
-        echo "copying $f/$2_$color_$size.png"
+    if [ -f "$f/$2_${color}_$size.png" ]; then
+        echo "copying $f/$2_${color}_$size.png"
         mkdir -vp $d
-        cp -v "$f/$2_$color_$size.png" "$d/$2.png"
+        cp -v "$f/$2_${color}_$size.png" "$d/$2.png"
     fi
 done
