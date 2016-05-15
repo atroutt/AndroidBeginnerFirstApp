@@ -1,76 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/detail_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    tools:context="com.audreytroutt.androidbeginners.firstapp.PaintingDetailActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
+    <ImageView
+        android:id="@+id/pd_image"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
+        android:layout_height="400dp"
+        android:background="@drawable/kahlo"
         android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:scaleType="fitXY" />
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginEnd="@dimen/article_keylines"
-            app:expandedTitleMarginStart="@dimen/md_keylines"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <ImageView
-                android:id="@+id/pd_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/kahlo"
-                android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax" />
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
+    <TextView
+        android:id="@+id/pd_title_year"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="@dimen/painting_list_title_text_size"
+        android:layout_below="@id/pd_image"
+        android:layout_marginBottom="@dimen/md_keylines" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/md_keylines"
-            android:paddingRight="@dimen/md_keylines"
-            android:paddingTop="@dimen/md_keylines">
-
-            <TextView
-                android:id="@+id/pd_title_year"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/colorPrimary"
-                android:textSize="@dimen/painting_list_title_text_size"
-                android:layout_marginBottom="@dimen/md_keylines" />
-
-            <TextView
-                android:id="@+id/pd_description"
-                android:layout_width="wrap_content"
-                android:textSize="@dimen/painting_list_desc_text_size"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-</android.support.design.widget.CoordinatorLayout>
-
+    <TextView
+        android:id="@+id/pd_description"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/painting_list_title_text_size"
+        android:layout_below="@id/pd_title_year"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
