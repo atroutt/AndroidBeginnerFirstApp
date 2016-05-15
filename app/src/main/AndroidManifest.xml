@@ -21,12 +21,20 @@
         <activity
             android:name=".PaintingListActivity"
             android:label="Paintings (List)"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-    </activity>
+        </activity>
+        <activity android:name=".PaintingDetailActivity"
+            android:parentActivityName=".MainActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
+        </activity>
     </application>
 
 </manifest>

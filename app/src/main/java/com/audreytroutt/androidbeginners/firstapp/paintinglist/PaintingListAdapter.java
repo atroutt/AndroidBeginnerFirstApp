@@ -2,6 +2,7 @@ package com.audreytroutt.androidbeginners.firstapp.paintinglist;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.audreytroutt.androidbeginners.firstapp.PaintingDetailActivity;
 import com.audreytroutt.androidbeginners.firstapp.PaintingListActivity;
 import com.audreytroutt.androidbeginners.firstapp.R;
 import com.squareup.picasso.Picasso;
@@ -83,7 +85,7 @@ public class PaintingListAdapter extends RecyclerView.Adapter<PaintingListAdapte
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public View mListItem;
         public ImageView mPaintingImage;
@@ -96,6 +98,16 @@ public class PaintingListAdapter extends RecyclerView.Adapter<PaintingListAdapte
             mPaintingImage = (ImageView) mListItem.findViewById(R.id.painting_thumb);
             mPaintingArtist = (TextView) mListItem.findViewById(R.id.painting_artist);
             mPaintingTitle = (TextView) mListItem.findViewById(R.id.painting_title);
+            mListItem.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Log.d("XXX", "onClick " + getAdapterPosition());
+            Intent i = new Intent(view.getContext(), PaintingDetailActivity.class);
+            i.putExtra("painting_id",getAdapterPosition());
+            view.getContext().startActivity(i);
+
         }
     }
 }
