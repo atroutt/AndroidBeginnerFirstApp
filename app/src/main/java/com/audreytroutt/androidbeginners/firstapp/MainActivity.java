@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity
 
     private Uri getAndroidBeginnerImageUri() {
         if (androidBeginnerImageUri == null) {
-            androidBeginnerImageUri = Uri.fromFile(getAndroidBeginnerImageFile())
+            androidBeginnerImageUri = Uri.fromFile(getAndroidBeginnerImageFile());
         }
         return androidBeginnerImageUri;
     }
