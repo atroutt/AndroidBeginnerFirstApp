@@ -39,9 +39,9 @@ if [ -n "$4" ]; then
             ;;
         24)
             ;;
-        18)
+        36)
             ;;
-        24)
+        48)
             ;;
         *)
             echo "ERROR: $4 is not a valid size. Choose 18, 24, 36, or 48."
