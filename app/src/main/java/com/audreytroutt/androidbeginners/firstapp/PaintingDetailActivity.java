@@ -35,8 +35,6 @@ public class PaintingDetailActivity extends AppCompatActivity {
         String title = res.obtainTypedArray(R.array.painting_titles).getString(paintingId);
         String desc = res.obtainTypedArray(R.array.painting_descriptions).getString(paintingId);
         int year = res.obtainTypedArray(R.array.painting_years).getInt(paintingId, 0);
-        Drawable paintingDrawable = res.obtainTypedArray(R.array.paintings).getDrawable(paintingId);
-
         this.setTitle(artist);
 
         GradientDrawable gradientDrawable = new GradientDrawable();

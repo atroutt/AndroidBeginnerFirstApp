@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private Uri androidBeginnerImageUri;
 
+    private FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +35,11 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
 
         if (haveAndroidBeginnerImageLocally()) {
             updateMainImageFromFile();
-            fab.setImageResource(R.drawable.ic_share);
+
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -184,5 +185,10 @@ public class MainActivity extends AppCompatActivity
         ImageView imageView = (ImageView)findViewById(R.id.camera_image);
         Bitmap bitmap = BitmapFactory.decodeFile(getAndroidBeginnerImageUri().getPath(), null);
         imageView.setImageBitmap(bitmap);
+
+        findViewById(R.id.initial_arrow_image).setVisibility(View.INVISIBLE);
+        findViewById(R.id.initial_instructions).setVisibility(View.INVISIBLE);
+
+        fab.setImageResource(R.drawable.ic_share);
     }
 }
