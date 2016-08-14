@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/pl_container" >
+    android:layout_height="wrap_content"
+    android:id="@+id/pl_container"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    card_view:cardCornerRadius="4dp">
 
     <ImageView
         android:id="@+id/painting_thumb"
         android:layout_width="match_parent"
-        android:layout_height="780dp"
+        android:layout_height="200dp"
         android:background="#00000088"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"/>
 
     <RelativeLayout
         android:id="@+id/painting_text_container"
@@ -29,7 +34,7 @@
             android:paddingLeft="10dp"
             android:textColor="#fff"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/painting_artist"
@@ -44,4 +49,4 @@
             android:layout_height="wrap_content" />
         />
     </RelativeLayout>
-</RelativeLayout>
+</android.support.v7.widget.CardView>

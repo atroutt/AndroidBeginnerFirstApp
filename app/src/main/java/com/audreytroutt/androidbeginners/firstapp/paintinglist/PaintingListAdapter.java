@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -64,17 +65,6 @@ public class PaintingListAdapter extends RecyclerView.Adapter<PaintingListAdapte
         // Copy the text into the text views
         vh.mPaintingArtist.setText(res.obtainTypedArray(R.array.painting_artists).getString(position));
         vh.mPaintingTitle.setText(res.obtainTypedArray(R.array.painting_titles).getString(position) + " (" + res.obtainTypedArray(R.array.painting_years).getString(position) + ")");
-
-        View container = vh.mListItem.findViewById(R.id.pl_container);
-
-        //set height in proportion to screen size
-        int proportionalHeight = containerHeight();
-        TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, proportionalHeight); // (width, height)
-        container.setLayoutParams(params);
-    }
-
-    private int containerHeight() {
-        return (int) (screenHeight / 3.0);
     }
 
     @Override

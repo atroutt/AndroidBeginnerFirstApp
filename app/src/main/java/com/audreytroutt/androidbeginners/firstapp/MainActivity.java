@@ -114,6 +114,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(listIntent);
         } else if (id == R.id.nav_grid) {
             // TODO create an intent for the PaintingGridActivity
+            Intent listIntent = new Intent(this, PaintingGridActivity.class);
+            startActivity(listIntent);
         } else if (id == R.id.nav_web) {
             // TODO create an intent to open a url
             Uri webpage = Uri.parse("http://audreytroutt.com/android-beginners/");
