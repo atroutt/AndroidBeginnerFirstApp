@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.File;
 
@@ -188,9 +189,15 @@ public class MainActivity extends AppCompatActivity
         Bitmap bitmap = BitmapFactory.decodeFile(getAndroidBeginnerImageUri().getPath(), null);
         imageView.setImageBitmap(bitmap);
 
+        // Show the picture label "Android Developer"
+        findViewById(R.id.picture_label).setVisibility(View.VISIBLE);
+        ((TextView)findViewById(R.id.welcome_message)).setText("Hello, Android Developer!");
+
+        // Hide the instructions for taking a photo
         findViewById(R.id.initial_arrow_image).setVisibility(View.INVISIBLE);
         findViewById(R.id.initial_instructions).setVisibility(View.INVISIBLE);
 
+        // Switch the icon on the FAB to share
         fab.setImageResource(R.drawable.ic_share);
     }
 }

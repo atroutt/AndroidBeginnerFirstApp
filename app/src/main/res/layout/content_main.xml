@@ -14,10 +14,11 @@
     android:background="@drawable/cell_bg">
 
     <TextView
+        android:id="@+id/welcome_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14pt"
-        android:text="Welcome, Android Developer!" />
+        android:text="Picture yourself as an Android Developer" />
 
     <FrameLayout
         android:id="@+id/picture_frame"
@@ -35,6 +36,16 @@
             android:scaleType="centerCrop" />
 
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/picture_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/picture_frame"
+        android:layout_centerInParent="true"
+        android:text="Android Developer"
+        android:textSize="24sp"
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/initial_arrow_image"
