@@ -10,14 +10,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.audreytroutt.androidbeginners.firstapp.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_main"
+    android:background="@drawable/cell_bg">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14pt"
-        android:text="Welcome, Android Developer!"
-        android:textStyle="bold"/>
+        android:text="Welcome, Android Developer!" />
 
     <FrameLayout
         android:id="@+id/picture_frame"
