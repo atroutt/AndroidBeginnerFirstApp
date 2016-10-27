@@ -57,13 +57,9 @@ public class PaintingDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Uri data = intent.getData();
-        String action = intent.getAction();
-        Toast.makeText(this, "Got data " + data + " and action " + action, Toast.LENGTH_LONG).show();
-        if (!TextUtils.isEmpty(data.getQueryParameter("painting_id"))) {
+        if (data != null && !TextUtils.isEmpty(data.getQueryParameter("painting_id"))) {
             paintingId = Integer.parseInt(data.getQueryParameter("painting_id"));
             displayPainting();
-        } else {
-            Toast.makeText(this, "uh oh! can't show painting missing painting_id param?", Toast.LENGTH_LONG).show();
         }
     }
 }
