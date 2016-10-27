@@ -9,9 +9,9 @@ import com.audreytroutt.androidbeginners.firstapp.paintinglist.PaintingListAdapt
 
 public class PaintingListActivity extends AppCompatActivity {
 
-    RecyclerView mRecyclerView;
-    RecyclerView.Adapter mAdapter;
-    RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

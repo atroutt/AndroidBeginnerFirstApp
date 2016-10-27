@@ -17,12 +17,9 @@ import com.audreytroutt.androidbeginners.firstapp.PaintingDetailActivity;
 import com.audreytroutt.androidbeginners.firstapp.R;
 import com.squareup.picasso.Picasso;
 
-/**
- * Created by audrey on 5/15/16.
- */
 public class PaintingListAdapter extends RecyclerView.Adapter<PaintingListAdapter.ViewHolder> {
 
-    Activity context;
+    private Activity context;
 
     public PaintingListAdapter(Activity context) {
         this.context = context;
@@ -31,7 +28,6 @@ public class PaintingListAdapter extends RecyclerView.Adapter<PaintingListAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_painting, parent, false);
-        // set the view's size, margins, padding and layout parameters
         return new ViewHolder(v);
     }
 
