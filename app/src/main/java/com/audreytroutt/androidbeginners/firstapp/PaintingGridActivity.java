@@ -9,10 +9,11 @@ import com.audreytroutt.androidbeginners.firstapp.paintinglist.PaintingListAdapt
 
 public class PaintingGridActivity extends AppCompatActivity {
 
+    private static int NUMBER_OF_COLUMNS = 2;
+
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
-    private int numberOfColumns = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,7 @@ public class PaintingGridActivity extends AppCompatActivity {
         setContentView(R.layout.activity_painting_grid);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.painting_grid_recycler_view);
-        mLayoutManager = new GridLayoutManager(this, numberOfColumns);
+        mLayoutManager = new GridLayoutManager(this, NUMBER_OF_COLUMNS);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new PaintingListAdapter(this);
         mRecyclerView.setAdapter(mAdapter);

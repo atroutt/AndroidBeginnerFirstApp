@@ -3,8 +3,6 @@ package com.audreytroutt.androidbeginners.firstapp;
 import android.app.Application;
 import android.widget.Toast;
 
-import java.util.Date;
-
 public class MyFirstApplication extends Application {
 
     @Override

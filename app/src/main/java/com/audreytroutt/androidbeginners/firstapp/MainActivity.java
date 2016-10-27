@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -179,8 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     /** Create a File for saving an image or video */
     private File getAndroidBeginnerImageFile() {
         File mediaStorageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File mediaFile = new File(mediaStorageDir.getPath(), "androidBeginnerImage.jpg");
-        return mediaFile;
+        return new File(mediaStorageDir.getPath(), "androidBeginnerImage.jpg");
     }
 
     private void updateMainImageFromFile() {
