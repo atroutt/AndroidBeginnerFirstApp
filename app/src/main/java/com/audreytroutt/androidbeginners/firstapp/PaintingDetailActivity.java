@@ -1,16 +1,20 @@
 package com.audreytroutt.androidbeginners.firstapp;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -30,6 +34,10 @@ public class PaintingDetailActivity extends AppCompatActivity {
             paintingId = extras.getInt("painting_id");
         }
 
+        displayPainting();
+    }
+
+    private void displayPainting() {
         Resources res = getResources();
         String artist = res.obtainTypedArray(R.array.painting_artists).getString(paintingId);
         String title = res.obtainTypedArray(R.array.painting_titles).getString(paintingId);
@@ -48,4 +56,22 @@ public class PaintingDetailActivity extends AppCompatActivity {
         TextView descView = (TextView) findViewById(R.id.pd_description);
         descView.setText(desc);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Intent intent = getIntent();
+        Uri data = intent.getData();
+        String action = intent.getAction();
+        Toast.makeText(this, "Got data " + data + " and action " + action, Toast.LENGTH_LONG).show();
+        if (!TextUtils.isEmpty(data.getQueryParameter("painting_id"))) {
+            paintingId = Integer.parseInt(data.getQueryParameter("painting_id"));
+            displayPainting();
+        } else {
+            Toast.makeText(this, "uh oh! can't show painting missing painting_id param?", Toast.LENGTH_LONG).show();
+        }
+    }
 }
+
+
