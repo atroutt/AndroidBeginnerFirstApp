@@ -9,19 +9,15 @@ import com.audreytroutt.androidbeginners.firstapp.paintinglist.PaintingListAdapt
 
 public class PaintingListActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_painting_list);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.painting_list_recycler_view);
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.painting_list_recycler_view);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new PaintingListAdapter(this);
+        RecyclerView.Adapter mAdapter = new PaintingListAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.getRecycledViewPool().setMaxRecycledViews(mAdapter.getItemViewType(0), 30);
     }

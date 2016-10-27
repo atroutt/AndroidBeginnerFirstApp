@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 
 public class PaintingListAdapter extends RecyclerView.Adapter<PaintingListAdapter.ViewHolder> {
 
-    private Activity context;
+    private final Activity context;
 
     public PaintingListAdapter(Activity context) {
         this.context = context;
@@ -55,14 +55,12 @@ public class PaintingListAdapter extends RecyclerView.Adapter<PaintingListAdapte
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public View mListItem;
-        public ImageView mPaintingImage;
-        public TextView mPaintingArtist;
-        public TextView mPaintingTitle;
+        public final ImageView mPaintingImage;
+        public final TextView mPaintingArtist;
+        public final TextView mPaintingTitle;
 
         public ViewHolder(View mListItem) {
             super(mListItem);
-            this.mListItem = mListItem;
             mPaintingImage = (ImageView) mListItem.findViewById(R.id.painting_thumb);
             mPaintingArtist = (TextView) mListItem.findViewById(R.id.painting_artist);
             mPaintingTitle = (TextView) mListItem.findViewById(R.id.painting_title);
