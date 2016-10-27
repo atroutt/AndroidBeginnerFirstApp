@@ -16,6 +16,7 @@
             android:layout_height="400dp"
             android:layout_alignParentTop="true"
             android:scaleType="centerCrop"
+            android:contentDescription="Image of painting being discussed"
             android:src="@drawable/kahlo"/>
 
         <TextView

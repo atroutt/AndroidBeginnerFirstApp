@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/cell_bg"
+        android:contentDescription="background image"
         android:scaleType="fitXY"/>
 
     <TextView
@@ -37,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorPrimaryLight"
+            android:contentDescription="This is where you can display your selfie. This same image can be shared with your friends."
             android:scaleType="centerCrop" />
 
     </FrameLayout>
@@ -55,10 +57,13 @@
         android:id="@+id/initial_arrow_image"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginRight="40dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="20dp"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:contentDescription="Arrow pointing at the share button"
         android:src="@drawable/arrow"/>
 
     <TextView
