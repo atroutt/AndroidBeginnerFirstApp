@@ -7,14 +7,11 @@ import java.util.Date;
 
 public class MyFirstApplication extends Application {
 
-    int toastLength = Toast.LENGTH_LONG;
-    Date lastLaunchDate = new Date();
-
     @Override
     public void onCreate() {
         super.onCreate();
         // My Application was just created!
-        showToast("I have been created!");
+        showToast("MyFirstApplication has been created!");
     }
 
     public void showToast(String message) {
