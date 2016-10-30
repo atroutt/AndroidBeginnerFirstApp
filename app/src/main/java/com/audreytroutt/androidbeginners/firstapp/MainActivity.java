@@ -261,8 +261,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void editImage() {
-        // TODO edit the saved image from the camera
-
         // Load the image into memory from the file
         Bitmap bmp = BitmapFactory.decodeFile(getAndroidBeginnerImageUri().getPath(), null);
 
@@ -272,7 +270,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int cropHeightY = (int)Math.max(0, (int)(bmp.getHeight() / 2) - (int)(minDimension / 2));
         Bitmap cropped = Bitmap.createBitmap(bmp, cropWidthX, cropHeightY, minDimension, minDimension);
 
-        // Draw text on the cropped image
+        // TODO Draw text on the cropped image
         Canvas canvas = new Canvas(cropped);
         Paint paint = new Paint();
         paint.setColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
