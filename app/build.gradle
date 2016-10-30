@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "24.0.3"
 
     defaultConfig {
         applicationId "com.audreytroutt.androidbeginners.firstapp"
@@ -31,4 +31,14 @@ dependencies {
 
     // picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
+
+    // firebase
+    compile 'com.google.firebase:firebase-core:9.8.0'
+
+    // for authentication
+    compile 'com.google.firebase:firebase-auth:9.8.0'
+    compile 'com.google.android.gms:play-services-auth:9.8.0'
 }
+
+// Add to the bottom of the file
+apply plugin: 'com.google.gms.google-services'

@@ -12,14 +12,16 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/current_user_photo"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:contentDescription="@string/android_app_icon_description"
-        android:src="@mipmap/ic_launcher" />
+        android:contentDescription="@string/user_photo_placeholder_image_description"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="fitStart" />
 
     <TextView
+        android:id="@+id/current_user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -27,7 +29,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/current_user_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/user_email_placeholder_text" />

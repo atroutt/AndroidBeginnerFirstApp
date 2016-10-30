@@ -15,22 +15,29 @@
             android:name=".MainActivity"
             android:label="Android Beginners"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
             <intent-filter>
-                <data android:scheme="abfirst" android:host="app" />
+                <data
+                    android:host="app"
+                    android:scheme="abfirst" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
             <intent-filter>
-                <data android:scheme="http"
+                <data
                     android:host="audreytroutt.com"
-                    android:pathPrefix="/abfirst" />
+                    android:pathPrefix="/abfirst"
+                    android:scheme="http" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
@@ -44,17 +51,25 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+
             <intent-filter>
-                <data android:scheme="abfirst" android:host="list" />
+                <data
+                    android:host="list"
+                    android:scheme="abfirst" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
             <intent-filter>
-                <data android:scheme="http"
+                <data
                     android:host="audreytroutt.com"
-                    android:pathPrefix="/abfirst/list" />
+                    android:pathPrefix="/abfirst/list"
+                    android:scheme="http" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
@@ -68,31 +83,57 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+
             <intent-filter>
-                <data android:scheme="abfirst" android:host="sample" />
+                <data
+                    android:host="sample"
+                    android:scheme="abfirst" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
             <intent-filter>
-                <data android:scheme="absecond" android:host="sample" />
+                <data
+                    android:host="sample"
+                    android:scheme="absecond" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
             <intent-filter>
-                <data android:scheme="http" android:host="audreytroutt.com" android:pathPrefix="/abfirst/grid" />
+                <data
+                    android:host="audreytroutt.com"
+                    android:pathPrefix="/abfirst/grid"
+                    android:scheme="http" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
         <activity android:name=".PaintingDetailActivity">
             <intent-filter>
-                <data android:scheme="abfirst" android:host="art" />
+                <data
+                    android:host="art"
+                    android:scheme="abfirst" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

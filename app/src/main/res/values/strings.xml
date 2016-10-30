@@ -10,7 +10,7 @@
     <string name="main_screen_welcom_message_if_image_set">Hello, Android Developer!</string>
     <string name="main_screen_welcome_message_if_no_image">Picture yourself as an Android Developer</string>
     <string name="background_image_description">background image</string>
-    <string name="android_app_icon_description">Cute little android app icon</string>
+    <string name="user_photo_placeholder_image_description">Avatar for current user</string>
     <string name="user_name_placeholder_text">Android Beginner</string>
     <string name="user_email_placeholder_text">android.studio@android.com</string>
     <string name="camera_menu_text">Camera</string>
@@ -22,5 +22,9 @@
     <string name="communication_menu_header">Communication</string>
     <string name="image_of_painting_image_description">Image of painting</string>
     <string name="image_of_painting_being_discussed_image_description">Image of painting being discussed</string>
+
+    <!-- Strings related to login -->
+    <string name="title_activity_login">Sign in with Google</string>
+    <string name="welcome_on_login">Hello, %1$s!</string>
 
 </resources>

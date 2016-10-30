@@ -15,19 +15,34 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    private static final String TAG = "MainActivity";
+
+    private DrawerLayout mDrawer;
     private Uri androidBeginnerImageUri;
     private FloatingActionButton fab;
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +50,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Set up Google Auth and request basic user profile data and email
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -56,21 +81,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+                this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        setUserInfoInDrawer();
+    }
+
+    private void setUserInfoInDrawer() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            View headerView = navigationView.getHeaderView(0);
+            TextView currentUserEmail = (TextView) headerView.findViewById(R.id.current_user_email);
+            currentUserEmail.setText(user.getEmail());
+            TextView currentUserName = (TextView) headerView.findViewById(R.id.current_user_name);
+            currentUserName.setText(user.getDisplayName());
+            ImageView currentUserImage = (ImageView) headerView.findViewById(R.id.current_user_photo);
+            Picasso.with(this).load(user.getPhotoUrl()).into(currentUserImage);
+        }
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+            mDrawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -93,6 +133,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_sign_out) {
             // TODO Implement sign out
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                    new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status status) {
+                            if (status.isSuccess()) {
+                                Intent loginScreenIntent = new Intent(MainActivity.this, LoginActivity.class);
+                                startActivity(loginScreenIntent);
+                            }
+                        }
+                    });
             return true;
         }
 
@@ -138,8 +188,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        mDrawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -199,4 +248,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Switch the icon on the FAB to share
         fab.setImageResource(R.drawable.ic_share);
     }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Log.d(TAG, "onConnectionFailed:" + connectionResult.getErrorMessage());
+    }
+
 }
