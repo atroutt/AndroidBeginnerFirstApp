@@ -5,7 +5,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Build;
@@ -142,7 +141,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_sign_out) {
             // TODO Implement sign out
             Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
@@ -159,21 +157,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.action_delete_photo) {
             File savedImage = getAndroidBeginnerImageFile();
             if (savedImage.exists()) {
+                if (!isStoragePermissionGranted()) {
+                    requestWriteExternalStoragePermission();
+                }
                 savedImage.delete();
                 Toast.makeText(this, "Photo deleted", Toast.LENGTH_LONG).show();
-                // Reset the main screen
-                ImageView imageView = (ImageView)findViewById(R.id.camera_image);
-                imageView.setImageBitmap(null);
 
-                ((TextView)findViewById(R.id.welcome_message)).setText(R.string.main_screen_welcome_message_if_no_image);
-
-                // Show the instructions for taking a photo
-                findViewById(R.id.initial_arrow_image).setVisibility(View.VISIBLE);
-                findViewById(R.id.initial_instructions).setVisibility(View.VISIBLE);
-
-                // Switch the icon on the FAB to camera
-                fab.setImageResource(R.drawable.ic_camera_alt);
+                resetMainImageToInitialState();
             }
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -285,6 +277,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setImageResource(R.drawable.ic_share);
     }
 
+    // this is the opposite of updateMainImageFromFile
+    private void resetMainImageToInitialState() {
+        ImageView imageView = (ImageView)findViewById(R.id.camera_image);
+        imageView.setImageBitmap(null);
+
+        ((TextView)findViewById(R.id.welcome_message)).setText(R.string.main_screen_welcome_message_if_no_image);
+
+        // Show the instructions for taking a photo
+        findViewById(R.id.initial_arrow_image).setVisibility(View.VISIBLE);
+        findViewById(R.id.initial_instructions).setVisibility(View.VISIBLE);
+
+        // Switch the icon on the FAB to camera
+        fab.setImageResource(R.drawable.ic_camera_alt);
+    }
+
     public  boolean isStoragePermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -303,14 +310,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void requestWriteExternalStoragePermission() {
-        ActivityCompat.requestPermissions(this, new String[]{ WRITE_EXTERNAL_STORAGE }, 000);
+        int requestCodeIgnoredForNow = 0;
+        ActivityCompat.requestPermissions(this, new String[]{ WRITE_EXTERNAL_STORAGE }, requestCodeIgnoredForNow);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults[0]== PackageManager.PERMISSION_GRANTED){
-            Log.v(TAG,"Permission: "+permissions[0]+ "was "+grantResults[0]);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             // continue editing image now that we have permission
         }
     }
