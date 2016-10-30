@@ -5,31 +5,31 @@
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Camera" />
+            android:title="@string/camera_menu_text" />
         <item
             android:id="@+id/nav_list"
             android:icon="@drawable/ic_list"
-            android:title="Painting List" />
+            android:title="@string/painting_list_menu_text" />
         <item
             android:id="@+id/nav_grid"
             android:icon="@drawable/ic_view_module"
-            android:title="Painting Grid" />
+            android:title="@string/painting_grid_menu_text" />
     </group>
 
-    <item android:title="Communication">
+    <item android:title="@string/communication_menu_header">
         <menu>
             <item
                 android:id="@+id/nav_web"
                 android:icon="@drawable/ic_public"
-                android:title="Class Website" />
+                android:title="@string/class_website_menu_text" />
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Tell Your Friends" />
+                android:title="@string/tell_your_friends_menu_text" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Email" />
+                android:title="@string/send_email_menu_text" />
         </menu>
     </item>
 

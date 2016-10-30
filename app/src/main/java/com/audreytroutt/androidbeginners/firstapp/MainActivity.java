@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // Show the picture label "Android Developer"
         findViewById(R.id.picture_label).setVisibility(View.VISIBLE);
-        ((TextView)findViewById(R.id.welcome_message)).setText("Hello, Android Developer!");
+        ((TextView)findViewById(R.id.welcome_message)).setText(R.string.main_screen_welcom_message_if_image_set);
 
         // Hide the instructions for taking a photo
         findViewById(R.id.initial_arrow_image).setVisibility(View.INVISIBLE);

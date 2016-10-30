@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/painting_thumb_size"
         android:background="#00000088"
-        android:contentDescription="Image of painting"
+        android:contentDescription="@string/image_of_painting_image_description"
         android:scaleType="centerCrop"/>
 
     <RelativeLayout
