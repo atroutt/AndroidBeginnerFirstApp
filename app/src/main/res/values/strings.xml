@@ -26,5 +26,6 @@
     <!-- Strings related to login -->
     <string name="title_activity_login">Who are you?</string>
     <string name="welcome_on_login">Welcome, %1$s! Let\'s get started...</string>
+    <string name="action_delete_photo">Delete Photo</string>
 
 </resources>

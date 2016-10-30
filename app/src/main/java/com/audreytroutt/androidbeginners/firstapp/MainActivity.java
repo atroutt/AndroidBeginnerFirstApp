@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -150,6 +151,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         }
                     });
             return true;
+        } else if (id == R.id.action_delete_photo) {
+            File mediaStorageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            File savedImage = new File(mediaStorageDir.getPath(), "androidBeginnerImage.jpg");
+            if (savedImage.exists()) {
+                savedImage.delete();
+                Toast.makeText(this, "Photo deleted", Toast.LENGTH_LONG).show();
+                // Reset the main screen
+                ImageView imageView = (ImageView)findViewById(R.id.camera_image);
+                imageView.setImageBitmap(null);
+
+                ((TextView)findViewById(R.id.welcome_message)).setText(R.string.main_screen_welcome_message_if_no_image);
+
+                // Show the instructions for taking a photo
+                findViewById(R.id.initial_arrow_image).setVisibility(View.VISIBLE);
+                findViewById(R.id.initial_instructions).setVisibility(View.VISIBLE);
+
+                // Switch the icon on the FAB to camera
+                fab.setImageResource(R.drawable.ic_camera_alt);
+            }
         }
 
         return super.onOptionsItemSelected(item);
