@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intent.putExtra(MediaStore.EXTRA_OUTPUT, getAndroidBeginnerImageUri()); // set the image file name
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         } else if (id == R.id.nav_list) {
+            // TODO create an intent for the PaintingListActivity
             Intent listIntent = new Intent(this, PaintingListActivity.class);
             startActivity(listIntent);
         } else if (id == R.id.nav_grid) {
@@ -201,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void shareAction() {
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, "I just made my first Android app!");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "I just made my first Android app! #androidbeginner #gdiphilly");
         shareIntent.setType("text/plain");
         if (haveAndroidBeginnerImageLocally()) {
             shareIntent.putExtra(Intent.EXTRA_STREAM, getAndroidBeginnerImageUri());

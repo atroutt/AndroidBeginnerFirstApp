@@ -7,7 +7,7 @@
     <string name="android_developer_image_label">Android Developer</string>
     <string name="main_screen_arrow_image_description">Arrow pointing at the share button</string>
     <string name="main_screen_instructions">Take a photo of yourself and show the world what an Android Developer looks like!</string>
-    <string name="main_screen_welcom_message_if_image_set">Hello, Android Developer!</string>
+    <string name="main_screen_welcom_message_if_image_set">You\'re an Android Developer!</string>
     <string name="main_screen_welcome_message_if_no_image">Picture yourself as an Android Developer</string>
     <string name="background_image_description">background image</string>
     <string name="user_photo_placeholder_image_description">Avatar for current user</string>
@@ -25,6 +25,6 @@
 
     <!-- Strings related to login -->
     <string name="title_activity_login">Sign in with Google</string>
-    <string name="welcome_on_login">Hello, %1$s!</string>
+    <string name="welcome_on_login">Welcome, %1$s! Let\'s get started...</string>
 
 </resources>
