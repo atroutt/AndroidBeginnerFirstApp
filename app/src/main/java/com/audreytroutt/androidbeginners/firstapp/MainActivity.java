@@ -3,6 +3,9 @@ package com.audreytroutt.androidbeginners.firstapp;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -10,6 +13,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -33,6 +37,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
 
@@ -208,8 +214,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             // A picture was just taken, let's display that in our image view
+            editImage();
             updateMainImageFromFile();
         }
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Log.d(TAG, "onConnectionFailed:" + connectionResult.getErrorMessage());
     }
 
     // ----------------------------------
@@ -237,8 +249,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Bitmap bitmap = BitmapFactory.decodeFile(getAndroidBeginnerImageUri().getPath(), null);
         imageView.setImageBitmap(bitmap);
 
-        // Show the picture label "Android Developer"
-        findViewById(R.id.picture_label).setVisibility(View.VISIBLE);
         ((TextView)findViewById(R.id.welcome_message)).setText(R.string.main_screen_welcom_message_if_image_set);
 
         // Hide the instructions for taking a photo
@@ -249,9 +259,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setImageResource(R.drawable.ic_share);
     }
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.d(TAG, "onConnectionFailed:" + connectionResult.getErrorMessage());
+    private void editImage() {
+        // TODO edit the saved image from the camera
+
+        // Load the image into memory from the file
+        Bitmap bmp = BitmapFactory.decodeFile(getAndroidBeginnerImageUri().getPath(), null);
+
+        // Square up the image from the camera
+        int minDimension = (int)Math.min(bmp.getWidth(), bmp.getHeight());
+        int cropWidthX = (int)Math.max(0, (int)(bmp.getWidth() / 2) - (int)(minDimension / 2));
+        int cropHeightY = (int)Math.max(0, (int)(bmp.getHeight() / 2) - (int)(minDimension / 2));
+        Bitmap cropped = Bitmap.createBitmap(bmp, cropWidthX, cropHeightY, minDimension, minDimension);
+
+        // Draw text on the cropped image
+        Canvas canvas = new Canvas(cropped);
+        Paint paint = new Paint();
+        paint.setColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimaryDark, null));
+        final int textSize = minDimension / 10; // I want the text to be about 1/10 as tall as the image
+        paint.setTextSize(textSize);
+        // X is the horizontal position of the text, relative to the left side
+        final int textXPosition = textSize; // it works out to start the text about 1/10 of the way into the image
+        // Y is the vertical position of the text, measured as how far the BOTTOM of the text is from the top of the image.
+        final int textYPosition = minDimension - (textSize / 2); // I want the text to be a little above the bottom of the image
+        canvas.drawText(getString(R.string.android_developer_image_label), textXPosition, textYPosition, paint);
+
+        // Save the edited image back to the file
+        saveBitmapToFile(cropped);
     }
 
+    private void saveBitmapToFile(Bitmap bitmap) {
+        FileOutputStream out = null;
+        try {
+            // overwrite the file
+            out = new FileOutputStream(getAndroidBeginnerImageFile());
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+        } catch (Exception e) {
+            Log.e(TAG, "save edited image failed", e);
+        } finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+            } catch (IOException e) {
+                Log.e(TAG, "close stream failed", e);
+            }
+        }
+    }
 }

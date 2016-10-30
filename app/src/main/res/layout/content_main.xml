@@ -39,19 +39,9 @@
             android:layout_height="match_parent"
             android:background="@color/colorPrimaryLight"
             android:contentDescription="@string/main_screen_camera_image_description"
-            android:scaleType="centerCrop" />
+            android:scaleType="fitCenter" />
 
     </FrameLayout>
-
-    <TextView
-        android:id="@+id/picture_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/picture_frame"
-        android:layout_centerInParent="true"
-        android:text="@string/android_developer_image_label"
-        android:textSize="24sp"
-        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/initial_arrow_image"
