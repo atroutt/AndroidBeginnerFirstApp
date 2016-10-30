@@ -24,7 +24,7 @@
     <string name="image_of_painting_being_discussed_image_description">Image of painting being discussed</string>
 
     <!-- Strings related to login -->
-    <string name="title_activity_login">Sign in with Google</string>
+    <string name="title_activity_login">Who are you?</string>
     <string name="welcome_on_login">Welcome, %1$s! Let\'s get started...</string>
 
 </resources>

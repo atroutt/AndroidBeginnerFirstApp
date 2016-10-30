@@ -15,32 +15,12 @@
             android:name=".MainActivity"
             android:label="Android Beginners"
             android:theme="@style/AppTheme.NoActionBar">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- UNCOMMENT TO SKIP LOGIN
             <intent-filter>
-                <data
-                    android:host="app"
-                    android:scheme="abfirst" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <data
-                    android:host="audreytroutt.com"
-                    android:pathPrefix="/abfirst"
-                    android:scheme="http" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".PaintingListActivity"
@@ -51,83 +31,17 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-
-            <intent-filter>
-                <data
-                    android:host="list"
-                    android:scheme="abfirst" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
-            <intent-filter>
-                <data
-                    android:host="audreytroutt.com"
-                    android:pathPrefix="/abfirst/list"
-                    android:scheme="http" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".PaintingGridActivity"
             android:label="Paintings (Grid)"
             android:parentActivityName=".MainActivity">
-
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-
-            <intent-filter>
-                <data
-                    android:host="sample"
-                    android:scheme="abfirst" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
-            <intent-filter>
-                <data
-                    android:host="sample"
-                    android:scheme="absecond" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
-            <intent-filter>
-                <data
-                    android:host="audreytroutt.com"
-                    android:pathPrefix="/abfirst/grid"
-                    android:scheme="http" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
         </activity>
-        <activity android:name=".PaintingDetailActivity">
-            <intent-filter>
-                <data
-                    android:host="art"
-                    android:scheme="abfirst" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".PaintingDetailActivity"></activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login">
