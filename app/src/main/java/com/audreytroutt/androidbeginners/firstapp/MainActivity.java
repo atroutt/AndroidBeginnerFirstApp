@@ -1,18 +1,21 @@
 package com.audreytroutt.androidbeginners.firstapp;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -40,6 +43,8 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
 
@@ -152,8 +157,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     });
             return true;
         } else if (id == R.id.action_delete_photo) {
-            File mediaStorageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-            File savedImage = new File(mediaStorageDir.getPath(), "androidBeginnerImage.jpg");
+            File savedImage = getAndroidBeginnerImageFile();
             if (savedImage.exists()) {
                 savedImage.delete();
                 Toast.makeText(this, "Photo deleted", Toast.LENGTH_LONG).show();
@@ -255,14 +259,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return androidBeginnerImageUri;
     }
+
     private boolean haveAndroidBeginnerImageLocally() {
-        return new File(getAndroidBeginnerImageUri().getPath()).exists();
+        return getAndroidBeginnerImageFile().exists();
     }
 
     /** Create a File for saving an image or video */
     private File getAndroidBeginnerImageFile() {
         File mediaStorageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        return new File(mediaStorageDir.getPath(), "androidBeginnerImage.jpg");
+        return new File(mediaStorageDir.getPath(), "androidBeginnersImage.jpg");
     }
 
     private void updateMainImageFromFile() {
@@ -280,7 +285,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setImageResource(R.drawable.ic_share);
     }
 
+    public  boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG,"Permission is granted");
+                return true;
+            } else {
+                Log.v(TAG,"Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            Log.v(TAG,"Permission is granted");
+            return true;
+        }
+    }
+
+    private void requestWriteExternalStoragePermission() {
+        ActivityCompat.requestPermissions(this, new String[]{ WRITE_EXTERNAL_STORAGE }, 000);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0]== PackageManager.PERMISSION_GRANTED){
+            Log.v(TAG,"Permission: "+permissions[0]+ "was "+grantResults[0]);
+            // continue editing image now that we have permission
+        }
+    }
+
     private void editImage() {
+        if (!isStoragePermissionGranted()) {
+            requestWriteExternalStoragePermission();
+        }
+
         // Load the image into memory from the file
         Bitmap bmp = BitmapFactory.decodeFile(getAndroidBeginnerImageUri().getPath(), null);
 
